@@ -57,6 +57,10 @@
 - 非 OpenAI 官方产品；Codex 及相关权利归其权利人
 - 效果图中的人物 / IP 形象仅作主题示意；商用或公开再分发请自行确认肖像权与商标授权
 
+## 🌐 主题市场
+
+去 [**Codex Skin Workshop 主题市场**](https://ryan-j-max.github.io/codex-skin-marketplace/) 浏览和下载社区主题，或者提交你自己的作品。
+
 ---
 
 Star 一下，然后挑一张图，把你的 Codex 变成今天想要的样子。
