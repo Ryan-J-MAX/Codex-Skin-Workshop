@@ -91,5 +91,13 @@ printf 'Codex Skin Workshop %s installed at %s for Codex %s using its signed Nod
 printf 'Use the Desktop launchers to customize, start, verify, or restore the official appearance.\n'
 
 if [ "$LAUNCH_AFTER_INSTALL" = "true" ]; then
+  # 检查 theme.json 中的背景图是否存在，不存在则复制默认图
+  THEME_JSON="$THEME_DIR/theme.json"
+  if [ -f "$THEME_JSON" ]; then
+    THEME_IMAGE="$(grep -o '"image": *"[^"]*"' "$THEME_JSON" | head -1 | sed 's/.*"\(.*\)"/\1/')"
+    if [ -n "$THEME_IMAGE" ] && [ ! -f "$THEME_DIR/$THEME_IMAGE" ]; then
+      /bin/cp "$SCRIPT_DIR/../assets/portal-hero.png" "$THEME_DIR/$THEME_IMAGE" 2>/dev/null || true
+    fi
+  fi
   "$SCRIPT_DIR/start-skin-workshop-macos.sh" --port "$PORT" --prompt-restart
 fi
