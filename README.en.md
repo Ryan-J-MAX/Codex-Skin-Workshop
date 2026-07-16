@@ -1,4 +1,4 @@
-# Codex Theme Studio
+# Codex Skin Workshop
 
 <p align="center">
   <a href="./README.md">中文</a> · <strong>English</strong>
@@ -30,8 +30,8 @@ Platform scripts are ready — different plumbing, same goal: theme Codex.
 
 | Platform | Dir | Entry |
 |------|------|------|
-| Apple Silicon / Intel Mac | [`macos/`](./macos/) | Double-click `Install Codex Theme Studio.command` |
-| Windows | [`windows/`](./windows/) | `scripts/install-theme-studio.ps1` → `start-theme-studio.ps1` |
+| Apple Silicon / Intel Mac | [`macos/`](./macos/) | Double-click `Install Codex Skin Workshop.command` |
+| Windows | [`windows/`](./windows/) | `scripts/install-skin-workshop.ps1` → `start-skin-workshop.ps1` |
 
 More detail:
 

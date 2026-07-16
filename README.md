@@ -1,4 +1,4 @@
-# Codex Theme Studio
+# Codex Skin Workshop
 
 <p align="center">
   <strong>中文</strong> · <a href="./README.en.md">English</a>
@@ -30,8 +30,8 @@
 
 | 平台 | 目录 | 入口 |
 |------|------|------|
-| Apple Silicon / Intel Mac | [`macos/`](./macos/) | 双击 `Install Codex Theme Studio.command` |
-| Windows | [`windows/`](./windows/) | `scripts/install-theme-studio.ps1` → `start-theme-studio.ps1` |
+| Apple Silicon / Intel Mac | [`macos/`](./macos/) | 双击 `Install Codex Skin Workshop.command` |
+| Windows | [`windows/`](./windows/) | `scripts/install-skin-workshop.ps1` → `start-skin-workshop.ps1` |
 
 更细的说明：
 

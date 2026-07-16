@@ -13,7 +13,7 @@ while IFS= read -r file; do "$NODE" --check "$file" >/dev/null; done < <(
   /usr/bin/find "$ROOT/scripts" "$ROOT/assets" -type f \( -name '*.mjs' -o -name '*.js' \) -print
 )
 
-if /usr/bin/grep -R -n -E 'theme-studio-skin|DREAM_SKIN_SKIN|1\.0\.0-rc2' \
+if /usr/bin/grep -R -n -E 'skin-workshop-skin|DREAM_SKIN_SKIN|1\.0\.0-rc2' \
   "$ROOT/scripts" "$ROOT/assets" >/dev/null; then
   printf 'Legacy release-candidate identifiers remain in runtime files.\n' >&2
   exit 1
@@ -25,7 +25,7 @@ fi
 
 "$NODE" "$ROOT/scripts/injector.mjs" --check-payload >/dev/null
 
-TMP="$(/usr/bin/mktemp -d /tmp/codex-theme-studio-tests.XXXXXX)"
+TMP="$(/usr/bin/mktemp -d /tmp/codex-skin-workshop-tests.XXXXXX)"
 trap '/bin/rm -rf "$TMP"' EXIT
 /bin/mkdir -p "$TMP/theme"
 /bin/cp "$ROOT/assets/portal-hero.png" "$TMP/theme/background.png"

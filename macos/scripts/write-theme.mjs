@@ -60,7 +60,7 @@ if (!imageStat.isFile() || imageStat.size < 1 || imageStat.size > 16 * 1024 * 10
   throw new Error("The prepared theme image must be non-empty and no larger than 16 MB.");
 }
 
-const name = valueFor("name", "我的 Codex Theme Studio").trim().slice(0, 80);
+const name = valueFor("name", "我的 Codex Skin Workshop").trim().slice(0, 80);
 const tagline = valueFor("tagline", "把喜欢的画面变成可交互的 Codex 工作台。").trim().slice(0, 160);
 const quote = valueFor("quote", "MAKE SOMETHING WONDERFUL").trim().slice(0, 80);
 const accent = validateHex(valueFor("accent", "#7cff46"), "accent");
@@ -70,7 +70,7 @@ const highlight = validateHex(valueFor("highlight", "#642a8c"), "highlight");
 const custom = {
   schemaVersion: 1,
   id: `custom-${Date.now()}`,
-  name: name || "我的 Codex Theme Studio",
+  name: name || "我的 Codex Skin Workshop",
   brandSubtitle: "CODEX DREAM SKIN",
   tagline: tagline || "把喜欢的画面变成可交互的 Codex 工作台。",
   projectPrefix: "选择项目 · ",

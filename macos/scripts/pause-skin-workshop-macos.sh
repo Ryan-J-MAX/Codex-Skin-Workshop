@@ -68,9 +68,9 @@ fi
 ' "$STATE_PATH" "$PORT" "$THEME_DIR" "$PROJECT_ROOT"
 
 if [ "$REMOVED" = "true" ]; then
-  printf 'Codex Theme Studio paused (skin removed; Codex left running). Port %s may still be in debug mode.\n' "$PORT"
+  printf 'Codex Skin Workshop paused (skin removed; Codex left running). Port %s may still be in debug mode.\n' "$PORT"
 elif codex_is_running; then
-  printf 'Codex Theme Studio paused (injector stopped). Live remove skipped: CDP on port %s not verified.\n' "$PORT"
+  printf 'Codex Skin Workshop paused (injector stopped). Live remove skipped: CDP on port %s not verified.\n' "$PORT"
 else
-  printf 'Codex Theme Studio paused (Codex is not running).\n'
+  printf 'Codex Skin Workshop paused (Codex is not running).\n'
 fi

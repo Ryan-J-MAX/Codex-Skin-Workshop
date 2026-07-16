@@ -19,7 +19,7 @@
 | 用途 | 路径 |
 |------|------|
 | 源码（本整理包） | `Codex-Theme-Studio/macos/` |
-| 安装后引擎 | `~/.codex/codex-theme-studio` |
+| 安装后引擎 | `~/.codex/codex-skin-workshop` |
 | 状态 / 日志 | `~/Library/Application Support/CodexThemeStudio` |
 | Codex 配置 | `~/.codex/config.toml`（仅外观相关项可能被改，可恢复） |
 

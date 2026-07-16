@@ -10,7 +10,7 @@
 
 set +e
 
-ENGINE="${CODEX_THEME_STUDIO_ENGINE:-$HOME/.codex/codex-theme-studio}"
+ENGINE="${CODEX_THEME_STUDIO_ENGINE:-$HOME/.codex/codex-skin-workshop}"
 if [ ! -d "$ENGINE/scripts" ]; then
   HERE="$(cd "$(dirname "$0")" && pwd -P)"
   [ -d "$HERE/../scripts" ] && ENGINE="$(cd "$HERE/.." && pwd -P)"
@@ -18,11 +18,11 @@ fi
 
 SCRIPTS="$ENGINE/scripts"
 APPLY="$SCRIPTS/apply-from-menubar-macos.sh"
-START="$SCRIPTS/start-theme-studio-macos.sh"
-PAUSE="$SCRIPTS/pause-theme-studio-macos.sh"
+START="$SCRIPTS/start-skin-workshop-macos.sh"
+PAUSE="$SCRIPTS/pause-skin-workshop-macos.sh"
 CUSTOMIZE="$SCRIPTS/customize-theme-macos.sh"
-RESTORE="$SCRIPTS/restore-theme-studio-macos.sh"
-STATUS="$SCRIPTS/status-theme-studio-macos.sh"
+RESTORE="$SCRIPTS/restore-skin-workshop-macos.sh"
+STATUS="$SCRIPTS/status-skin-workshop-macos.sh"
 SWITCH="$SCRIPTS/switch-theme-macos.sh"
 LOAD_IMG="$SCRIPTS/load-image-theme-macos.sh"
 [ -x "$APPLY" ] || APPLY="$START"

@@ -1,16 +1,16 @@
 ((cssText, artDataUrl, themeConfig) => {
   const STATE_KEY = "__CODEX_DREAM_SKIN_STATE__";
   const DISABLED_KEY = "__CODEX_DREAM_SKIN_DISABLED__";
-  const STYLE_ID = "codex-theme-studio-style";
-  const CHROME_ID = "codex-theme-studio-chrome";
+  const STYLE_ID = "codex-skin-workshop-style";
+  const CHROME_ID = "codex-skin-workshop-chrome";
   const SHELL_ATTR = "data-dream-shell";
   const VERSION = __DREAM_SKIN_VERSION_JSON__;
   const THEME = themeConfig && typeof themeConfig === "object" ? themeConfig : {};
   const THEME_VARIABLES = [
     "--ds-bg", "--ds-panel", "--ds-panel-2", "--ds-green", "--ds-lime",
     "--ds-cyan", "--ds-purple", "--ds-text", "--ds-muted", "--ds-line",
-    "--theme-studio-name", "--theme-studio-tagline", "--theme-studio-project-prefix",
-    "--theme-studio-project-label",
+    "--skin-workshop-name", "--skin-workshop-tagline", "--skin-workshop-project-prefix",
+    "--skin-workshop-project-label",
   ];
   window[DISABLED_KEY] = false;
 
@@ -153,10 +153,10 @@
     for (const [name, value] of Object.entries(variables)) {
       if (typeof value === "string" && value) root.style.setProperty(name, value);
     }
-    root.style.setProperty("--theme-studio-name", cssString(THEME.name || "Codex Theme Studio"));
-    root.style.setProperty("--theme-studio-tagline", cssString(THEME.tagline || "Make something wonderful."));
-    root.style.setProperty("--theme-studio-project-prefix", cssString(THEME.projectPrefix || "选择项目 · "));
-    root.style.setProperty("--theme-studio-project-label", cssString(THEME.projectLabel || "◉  选择项目"));
+    root.style.setProperty("--skin-workshop-name", cssString(THEME.name || "Codex Skin Workshop"));
+    root.style.setProperty("--skin-workshop-tagline", cssString(THEME.tagline || "Make something wonderful."));
+    root.style.setProperty("--skin-workshop-project-prefix", cssString(THEME.projectPrefix || "选择项目 · "));
+    root.style.setProperty("--skin-workshop-project-label", cssString(THEME.projectLabel || "◉  选择项目"));
   };
 
   const existingStyle = document.getElementById(STYLE_ID);
@@ -170,9 +170,9 @@
     const root = document.documentElement;
     if (!root) return;
     const shell = detectShellMode();
-    root.classList.add("codex-theme-studio");
+    root.classList.add("codex-skin-workshop");
     root.setAttribute(SHELL_ATTR, shell);
-    root.style.setProperty("--theme-studio-art", `url("${artUrl}")`);
+    root.style.setProperty("--skin-workshop-art", `url("${artUrl}")`);
     applyTheme(root, shell);
 
     let style = document.getElementById(STYLE_ID);
@@ -192,13 +192,13 @@
       [...document.querySelectorAll('[role="main"]')].find((candidate) =>
         candidate.querySelector('[data-feature="game-source"]') &&
         candidate.querySelector('.group\\\\/home-suggestions')) || null;
-    for (const candidate of document.querySelectorAll('[role="main"].theme-studio-home')) {
-      if (candidate !== home) candidate.classList.remove("theme-studio-home");
+    for (const candidate of document.querySelectorAll('[role="main"].skin-workshop-home')) {
+      if (candidate !== home) candidate.classList.remove("skin-workshop-home");
     }
-    if (home) home.classList.add("theme-studio-home");
+    if (home) home.classList.add("skin-workshop-home");
 
     if (!shellMain || !document.body) return;
-    shellMain.classList.toggle("theme-studio-home-shell", Boolean(home));
+    shellMain.classList.toggle("skin-workshop-home-shell", Boolean(home));
     let chrome = document.getElementById(CHROME_ID);
     if (!chrome || chrome.parentElement !== document.body) {
       chrome?.remove();
@@ -206,37 +206,37 @@
       chrome.id = CHROME_ID;
       chrome.setAttribute("aria-hidden", "true");
       chrome.innerHTML = `
-        <div class="theme-studio-brand">
-          <span class="theme-studio-portal-mark">◉</span>
+        <div class="skin-workshop-brand">
+          <span class="skin-workshop-portal-mark">◉</span>
           <span><b></b><small></small></span>
         </div>
-        <div class="theme-studio-status"><i></i><span></span></div>
-        <div class="theme-studio-quote"></div>
-        <div class="theme-studio-particles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="theme-studio-orbit"></div>`;
+        <div class="skin-workshop-status"><i></i><span></span></div>
+        <div class="skin-workshop-quote"></div>
+        <div class="skin-workshop-particles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="skin-workshop-orbit"></div>`;
       document.body.appendChild(chrome);
     }
-    chrome.querySelector(".theme-studio-brand b").textContent = THEME.name || "Codex Theme Studio";
-    chrome.querySelector(".theme-studio-brand small").textContent = THEME.brandSubtitle || "CODEX DREAM SKIN";
-    chrome.querySelector(".theme-studio-status span").textContent = THEME.statusText || "DREAM SKIN ONLINE";
-    chrome.querySelector(".theme-studio-quote").textContent = THEME.quote || "MAKE SOMETHING WONDERFUL";
+    chrome.querySelector(".skin-workshop-brand b").textContent = THEME.name || "Codex Skin Workshop";
+    chrome.querySelector(".skin-workshop-brand small").textContent = THEME.brandSubtitle || "CODEX DREAM SKIN";
+    chrome.querySelector(".skin-workshop-status span").textContent = THEME.statusText || "DREAM SKIN ONLINE";
+    chrome.querySelector(".skin-workshop-quote").textContent = THEME.quote || "MAKE SOMETHING WONDERFUL";
     const shellBox = shellMain.getBoundingClientRect();
     chrome.style.left = `${Math.round(shellBox.left)}px`;
     chrome.style.top = `${Math.round(shellBox.top)}px`;
     chrome.style.width = `${Math.round(shellBox.width)}px`;
     chrome.style.height = `${Math.round(shellBox.height)}px`;
-    chrome.classList.toggle("theme-studio-home-shell", Boolean(home));
+    chrome.classList.toggle("skin-workshop-home-shell", Boolean(home));
     chrome.dataset.dreamShell = shell;
   };
 
   const cleanup = () => {
     window[DISABLED_KEY] = true;
-    document.documentElement?.classList.remove("codex-theme-studio");
+    document.documentElement?.classList.remove("codex-skin-workshop");
     document.documentElement?.removeAttribute(SHELL_ATTR);
-    document.documentElement?.style.removeProperty("--theme-studio-art");
+    document.documentElement?.style.removeProperty("--skin-workshop-art");
     for (const name of THEME_VARIABLES) document.documentElement?.style.removeProperty(name);
-    document.querySelectorAll(".theme-studio-home").forEach((node) => node.classList.remove("theme-studio-home"));
-    document.querySelectorAll(".theme-studio-home-shell").forEach((node) => node.classList.remove("theme-studio-home-shell"));
+    document.querySelectorAll(".skin-workshop-home").forEach((node) => node.classList.remove("skin-workshop-home"));
+    document.querySelectorAll(".skin-workshop-home-shell").forEach((node) => node.classList.remove("skin-workshop-home-shell"));
     document.getElementById(STYLE_ID)?.remove();
     document.getElementById(CHROME_ID)?.remove();
     const state = window[STATE_KEY];

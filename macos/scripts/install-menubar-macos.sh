@@ -13,7 +13,7 @@ while [ "$#" -gt 0 ]; do
   esac
 done
 
-PLUGIN_SRC="$PROJECT_ROOT/menubar/codex_theme_studio.10s.sh"
+PLUGIN_SRC="$PROJECT_ROOT/menubar/codex_skin_workshop.10s.sh"
 [ -f "$PLUGIN_SRC" ] || fail "Plugin source missing: $PLUGIN_SRC"
 
 # Prefer installed engine when this tree is the repo and engine already exists.
@@ -26,7 +26,7 @@ PLUGIN_DIR="$STATE_ROOT/menubar"
 ensure_state_root
 /bin/mkdir -p "$PLUGIN_DIR"
 
-PLUGIN_DST="$PLUGIN_DIR/codex_theme_studio.10s.sh"
+PLUGIN_DST="$PLUGIN_DIR/codex_skin_workshop.10s.sh"
 {
   printf '%s\n' '#!/bin/bash'
   printf 'export CODEX_DREAM_SKIN_ENGINE=%q\n' "$ENGINE_ROOT"
@@ -38,9 +38,9 @@ PLUGIN_DST="$PLUGIN_DIR/codex_theme_studio.10s.sh"
 # Keep a copy inside the engine tree when installed separately from this tree.
 if [ -d "$INSTALL_ROOT" ] && [ "$PROJECT_ROOT" != "$INSTALL_ROOT" ]; then
   /bin/mkdir -p "$INSTALL_ROOT/menubar" "$INSTALL_ROOT/scripts"
-  /bin/cp -f "$PLUGIN_SRC" "$INSTALL_ROOT/menubar/codex_theme_studio.10s.sh"
-  /bin/chmod 755 "$INSTALL_ROOT/menubar/codex_theme_studio.10s.sh"
-  for name in pause-theme-studio-macos.sh status-theme-studio-macos.sh apply-from-menubar-macos.sh \
+  /bin/cp -f "$PLUGIN_SRC" "$INSTALL_ROOT/menubar/codex_skin_workshop.10s.sh"
+  /bin/chmod 755 "$INSTALL_ROOT/menubar/codex_skin_workshop.10s.sh"
+  for name in pause-skin-workshop-macos.sh status-skin-workshop-macos.sh apply-from-menubar-macos.sh \
     switch-theme-macos.sh load-image-theme-macos.sh install-menubar-macos.sh; do
     if [ -f "$PROJECT_ROOT/scripts/$name" ]; then
       /bin/cp -f "$PROJECT_ROOT/scripts/$name" "$INSTALL_ROOT/scripts/$name"
@@ -50,8 +50,8 @@ if [ -d "$INSTALL_ROOT" ] && [ "$PROJECT_ROOT" != "$INSTALL_ROOT" ]; then
 fi
 
 /bin/chmod 755 \
-  "$PROJECT_ROOT/scripts/pause-theme-studio-macos.sh" \
-  "$PROJECT_ROOT/scripts/status-theme-studio-macos.sh" \
+  "$PROJECT_ROOT/scripts/pause-skin-workshop-macos.sh" \
+  "$PROJECT_ROOT/scripts/status-skin-workshop-macos.sh" \
   "$PROJECT_ROOT/scripts/apply-from-menubar-macos.sh" \
   "$PROJECT_ROOT/scripts/switch-theme-macos.sh" \
   "$PROJECT_ROOT/scripts/load-image-theme-macos.sh" \

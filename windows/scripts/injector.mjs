@@ -119,7 +119,7 @@ async function waitForTargets(port, timeoutMs) {
 
 async function loadPayload() {
   const [css, template, art] = await Promise.all([
-    fs.readFile(path.join(root, "assets", "theme-studio.css"), "utf8"),
+    fs.readFile(path.join(root, "assets", "skin-workshop.css"), "utf8"),
     fs.readFile(path.join(root, "assets", "renderer-inject.js"), "utf8"),
     fs.readFile(path.join(root, "assets", "dream-reference.png")),
   ]);
@@ -142,10 +142,10 @@ async function removeFromSession(session) {
     window.__CODEX_DREAM_SKIN_DISABLED__ = true;
     const state = window.__CODEX_DREAM_SKIN_STATE__;
     if (state?.cleanup) return state.cleanup();
-    document.documentElement?.classList.remove('codex-theme-studio');
+    document.documentElement?.classList.remove('codex-skin-workshop');
     document.documentElement?.style.removeProperty('--dream-art');
-    document.getElementById('codex-theme-studio-style')?.remove();
-    document.getElementById('codex-theme-studio-chrome')?.remove();
+    document.getElementById('codex-skin-workshop-style')?.remove();
+    document.getElementById('codex-skin-workshop-chrome')?.remove();
     return true;
   })()`);
 }
@@ -161,11 +161,11 @@ async function verifySession(session) {
     const suggestions = home?.querySelector('.group\\\\/home-suggestions') ?? null;
     const cards = suggestions ? [...suggestions.querySelectorAll('button')].map(box) : [];
     const result = {
-      installed: document.documentElement.classList.contains('codex-theme-studio'),
+      installed: document.documentElement.classList.contains('codex-skin-workshop'),
       version: window.__CODEX_DREAM_SKIN_STATE__?.version ?? null,
-      stylePresent: Boolean(document.getElementById('codex-theme-studio-style')),
-      chromePresent: Boolean(document.getElementById('codex-theme-studio-chrome')),
-      chromePointerEvents: getComputedStyle(document.getElementById('codex-theme-studio-chrome') || document.body).pointerEvents,
+      stylePresent: Boolean(document.getElementById('codex-skin-workshop-style')),
+      chromePresent: Boolean(document.getElementById('codex-skin-workshop-chrome')),
+      chromePointerEvents: getComputedStyle(document.getElementById('codex-skin-workshop-chrome') || document.body).pointerEvents,
       homePresent: Boolean(home),
       suggestionsPresent: Boolean(suggestions),
       hero: box(home?.firstElementChild?.firstElementChild?.firstElementChild),
@@ -235,7 +235,7 @@ async function runOneShot(options) {
         if (options.mode !== "remove") await applyToSession(session, payload);
       }
       const verified = options.mode === "remove"
-        ? await session.evaluate("!document.documentElement.classList.contains('codex-theme-studio')")
+        ? await session.evaluate("!document.documentElement.classList.contains('codex-skin-workshop')")
         : (options.reload || options.mode === "once")
           ? await waitForVerifiedSession(session, options.timeoutMs)
           : await verifySession(session);
@@ -262,7 +262,7 @@ async function runWatch(options) {
     try {
       targets = await waitForTargets(options.port, 2000);
     } catch (error) {
-      console.error(`[theme-studio] ${new Date().toISOString()} ${error.message}`);
+      console.error(`[skin-workshop] ${new Date().toISOString()} ${error.message}`);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       continue;
     }
@@ -281,14 +281,14 @@ async function runWatch(options) {
         const session = await connectTarget(target);
         session.on("Page.loadEventFired", () => {
           setTimeout(() => applyToSession(session, payload).catch((error) => {
-            console.error(`[theme-studio] reinject failed: ${error.message}`);
+            console.error(`[skin-workshop] reinject failed: ${error.message}`);
           }), 250);
         });
         await applyToSession(session, payload);
         sessions.set(target.id, session);
-        console.log(`[theme-studio] injected target ${target.id} (${target.title || target.url})`);
+        console.log(`[skin-workshop] injected target ${target.id} (${target.title || target.url})`);
       } catch (error) {
-        console.error(`[theme-studio] inject failed for ${target.id}: ${error.message}`);
+        console.error(`[skin-workshop] inject failed for ${target.id}: ${error.message}`);
       }
     }
     await new Promise((resolve) => setTimeout(resolve, 900));

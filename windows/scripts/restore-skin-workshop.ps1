@@ -25,14 +25,14 @@ if ($Uninstall) {
   $desktop = [Environment]::GetFolderPath('Desktop')
   $startMenu = Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs'
   @(
-    (Join-Path $desktop 'Codex Theme Studio.lnk'),
-    (Join-Path $desktop 'Codex Theme Studio - Restore.lnk'),
-    (Join-Path $startMenu 'Codex Theme Studio.lnk')
+    (Join-Path $desktop 'Codex Skin Workshop.lnk'),
+    (Join-Path $desktop 'Codex Skin Workshop - Restore.lnk'),
+    (Join-Path $startMenu 'Codex Skin Workshop.lnk')
   ) | ForEach-Object { Remove-Item -LiteralPath $_ -Force -ErrorAction SilentlyContinue }
 }
 
 if ($RestoreBaseTheme) {
-  $backup = Join-Path $StateRoot 'config.before-theme-studio.toml'
+  $backup = Join-Path $StateRoot 'config.before-skin-workshop.toml'
   $config = Join-Path $HOME '.codex\config.toml'
   if (-not (Test-Path -LiteralPath $backup)) { throw 'No pre-install config backup is available.' }
   $backupContent = Get-Content -LiteralPath $backup -Raw
@@ -57,4 +57,4 @@ if ($RestoreBaseTheme) {
   Set-Content -LiteralPath $config -Value $currentContent -Encoding utf8
 }
 
-Write-Host 'The live Theme Studio was removed.'
+Write-Host 'The live Skin Workshop was removed.'

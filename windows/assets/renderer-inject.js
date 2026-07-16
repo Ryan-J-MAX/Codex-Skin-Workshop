@@ -1,7 +1,7 @@
 ((cssText, artDataUrl) => {
   const STATE_KEY = "__CODEX_DREAM_SKIN_STATE__";
-  const STYLE_ID = "codex-theme-studio-style";
-  const CHROME_ID = "codex-theme-studio-chrome";
+  const STYLE_ID = "codex-skin-workshop-style";
+  const CHROME_ID = "codex-skin-workshop-chrome";
   window.__CODEX_DREAM_SKIN_DISABLED__ = false;
 
   const previous = window[STATE_KEY];
@@ -25,7 +25,7 @@
     if (window.__CODEX_DREAM_SKIN_DISABLED__) return;
     const root = document.documentElement;
     if (!root) return;
-    root.classList.add("codex-theme-studio");
+    root.classList.add("codex-skin-workshop");
     root.style.setProperty("--dream-art", `url("${artUrl}")`);
 
     let style = document.getElementById(STYLE_ID);
@@ -72,7 +72,7 @@
 
   const cleanup = () => {
     window.__CODEX_DREAM_SKIN_DISABLED__ = true;
-    document.documentElement?.classList.remove("codex-theme-studio");
+    document.documentElement?.classList.remove("codex-skin-workshop");
     document.documentElement?.style.removeProperty("--dream-art");
     document.querySelectorAll(".dream-home").forEach((node) => node.classList.remove("dream-home"));
     document.querySelectorAll(".dream-home-shell").forEach((node) => node.classList.remove("dream-home-shell"));

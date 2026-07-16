@@ -5,7 +5,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd -P)"
 OUTPUT="${1:-$HOME/Desktop/Codex 主题编辑器.zip}"
 TMP="$(/usr/bin/mktemp -d /tmp/codex-theme-client.XXXXXX)"
 CLIENT_ROOT="$TMP/Codex 主题编辑器"
-ENGINE="$CLIENT_ROOT/.codex-theme-studio"
+ENGINE="$CLIENT_ROOT/.codex-skin-workshop"
 trap '/bin/rm -rf "$TMP"' EXIT
 
 "$ROOT/tests/run-tests.sh"
@@ -21,7 +21,7 @@ trap '/bin/rm -rf "$TMP"' EXIT
   '#!/bin/bash' \
   'set -euo pipefail' \
   'ROOT="$(cd "$(dirname "$0")" && pwd -P)"' \
-  'exec "$ROOT/.codex-theme-studio/scripts/install-theme-studio-macos.sh"' \
+  'exec "$ROOT/.codex-skin-workshop/scripts/install-skin-workshop-macos.sh"' \
   > "$CLIENT_ROOT/安装 Codex 主题编辑器.command"
 
 /usr/bin/printf '%s\n' \
@@ -31,7 +31,7 @@ trap '/bin/rm -rf "$TMP"' EXIT
   '' \
   '手动方式：双击“安装 Codex 主题编辑器.command”。安装完成后，桌面会出现启动、定制、验证和恢复四个入口。' \
   '' \
-  '不要只复制图片或 CSS。隐藏目录 .codex-theme-studio 是完整运行引擎，请勿删除。' \
+  '不要只复制图片或 CSS。隐藏目录 .codex-skin-workshop 是完整运行引擎，请勿删除。' \
   > "$CLIENT_ROOT/使用说明.txt"
 
 /bin/cp "$ROOT/CLIENT_DEPLOY_PROMPT.md" "$CLIENT_ROOT/给 Codex 的部署提示词.md"

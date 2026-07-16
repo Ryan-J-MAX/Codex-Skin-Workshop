@@ -1,4 +1,4 @@
-# Codex Theme Studio · 项目记录
+# Codex Skin Workshop · 项目记录
 
 > 本地归档说明。面向维护者，不是用户安装手册。  
 > 仓库首页：[`../README.md`](../README.md)（中文）· [`../README.en.md`](../README.en.md)（English）
@@ -7,7 +7,7 @@
 
 ## 1. 它是什么
 
-**Codex Theme Studio** 是给 **OpenAI Codex 桌面端** 用的**外部主题 / 换肤**方案：
+**Codex Skin Workshop** 是给 **OpenAI Codex 桌面端** 用的**外部主题 / 换肤**方案：
 
 - 本机 **CDP** 注入 CSS + 装饰 DOM
 - **不修改**官方 `.app` / `app.asar` / WindowsApps / 代码签名
@@ -26,7 +26,7 @@
 | 素材包 | 微信传播的 Win / Mac 皮肤包（RAR/ZIP），含注入脚本与主题资源 |
 | 安全审 | 核对是否改 asar、是否静默劫持 API；结论：以本机 CDP 注入为主，开源时明确禁止静默中转劫持 |
 | 整理开源 | 按平台拆成 `macos/`、`windows/`，补 README 安装入口 |
-| 本地美化 | Mac 本机引擎装在 `~/.codex/codex-theme-studio`；CSS 走浅色壳 |
+| 本地美化 | Mac 本机引擎装在 `~/.codex/codex-skin-workshop`；CSS 走浅色壳 |
 | i18n | 默认中文 `README.md`，英文 `README.en.md`，顶部互链 |
 
 ---
@@ -65,9 +65,9 @@ Codex-Theme-Studio/
 
 | 用途 | 路径 |
 |------|------|
-| 引擎 | `~/.codex/codex-theme-studio` |
+| 引擎 | `~/.codex/codex-skin-workshop` |
 | 状态 / 主题 | `~/Library/Application Support/CodexThemeStudio` |
-| 桌面启动器 | `~/Desktop/Codex Theme Studio*.command` → 指向上面的引擎脚本 |
+| 桌面启动器 | `~/Desktop/Codex Skin Workshop*.command` → 指向上面的引擎脚本 |
 
 Windows 状态目录见 `platforms.md`（`%LOCALAPPDATA%\CodexThemeStudio`）。
 
@@ -88,7 +88,7 @@ Windows 状态目录见 `platforms.md`（`%LOCALAPPDATA%\CodexThemeStudio`）。
 |------|------|
 | 改赞助文案 | 同时改 `README.md` 与 `README.en.md` |
 | 发版推送 | 在本仓库目录 `git add` → `commit` → `push origin main` |
-| Mac 本机主题 | 改 `~/.codex/codex-theme-studio` 的 CSS/inject；与 GitHub 源码可不同步，属本机实验位 |
+| Mac 本机主题 | 改 `~/.codex/codex-skin-workshop` 的 CSS/inject；与 GitHub 源码可不同步，属本机实验位 |
 
 ---
 
@@ -96,7 +96,7 @@ Windows 状态目录见 `platforms.md`（`%LOCALAPPDATA%\CodexThemeStudio`）。
 
 | 项 | 说明 |
 |----|------|
-| 本机已装引擎 | `~/.codex/codex-theme-studio` |
+| 本机已装引擎 | `~/.codex/codex-skin-workshop` |
 
 ---
 

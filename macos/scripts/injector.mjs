@@ -232,7 +232,7 @@ async function loadTheme(themeDir) {
   const theme = {
     schemaVersion: 1,
     id: text(raw.id, "custom", 80),
-    name: text(raw.name, "Codex Theme Studio", 80),
+    name: text(raw.name, "Codex Skin Workshop", 80),
     brandSubtitle: text(raw.brandSubtitle, "CODEX DREAM SKIN", 80),
     tagline: text(raw.tagline, "Make something wonderful.", 160),
     projectPrefix: text(raw.projectPrefix, "选择项目 · ", 80),
@@ -267,7 +267,7 @@ async function loadTheme(themeDir) {
 
 async function loadPayload(themeDir) {
   const [css, template, loaded] = await Promise.all([
-    fs.readFile(path.join(root, "assets", "theme-studio.css"), "utf8"),
+    fs.readFile(path.join(root, "assets", "skin-workshop.css"), "utf8"),
     fs.readFile(path.join(root, "assets", "renderer-inject.js"), "utf8"),
     loadTheme(themeDir),
   ]);
@@ -294,10 +294,10 @@ async function removeFromSession(session) {
     window.__CODEX_DREAM_SKIN_DISABLED__ = true;
     const state = window.__CODEX_DREAM_SKIN_STATE__;
     if (state?.cleanup) return state.cleanup();
-    document.documentElement?.classList.remove('codex-theme-studio');
-    document.documentElement?.style.removeProperty('--theme-studio-art');
-    document.getElementById('codex-theme-studio-style')?.remove();
-    document.getElementById('codex-theme-studio-chrome')?.remove();
+    document.documentElement?.classList.remove('codex-skin-workshop');
+    document.documentElement?.style.removeProperty('--skin-workshop-art');
+    document.getElementById('codex-skin-workshop-style')?.remove();
+    document.getElementById('codex-skin-workshop-chrome')?.remove();
     delete window.__CODEX_DREAM_SKIN_STATE__;
     return true;
   })()`);
@@ -305,9 +305,9 @@ async function removeFromSession(session) {
 
 async function verifyRemovedSession(session) {
   return session.evaluate(`(() =>
-    !document.documentElement.classList.contains('codex-theme-studio') &&
-    !document.getElementById('codex-theme-studio-style') &&
-    !document.getElementById('codex-theme-studio-chrome') &&
+    !document.documentElement.classList.contains('codex-skin-workshop') &&
+    !document.getElementById('codex-skin-workshop-style') &&
+    !document.getElementById('codex-skin-workshop-chrome') &&
     !window.__CODEX_DREAM_SKIN_STATE__
   )()`);
 }
@@ -328,7 +328,7 @@ async function verifySession(session) {
     const homeSignal = homeIndicator ?? document.querySelector('[data-feature="game-source"]') ??
       document.querySelector('.group\\\\/home-suggestions');
     const homeRoute = homeSignal?.closest('[role="main"]') ?? null;
-    const home = document.querySelector('[role="main"].theme-studio-home');
+    const home = document.querySelector('[role="main"].skin-workshop-home');
     const suggestions = home?.querySelector('.group\\\\/home-suggestions') ?? null;
     const cardBoxes = suggestions ? [...suggestions.querySelectorAll('button')].map(box) : [];
     const visibleCards = cardBoxes.filter((item) => item?.visible);
@@ -336,11 +336,11 @@ async function verifySession(session) {
     const projectButton = box(home?.querySelector('.group\\\\/project-selector > button'));
     const composer = box(document.querySelector('.composer-surface-chrome'));
     const sidebar = box(document.querySelector('aside.app-shell-left-panel'));
-    const chrome = document.getElementById('codex-theme-studio-chrome');
+    const chrome = document.getElementById('codex-skin-workshop-chrome');
     const result = {
-      installed: document.documentElement.classList.contains('codex-theme-studio'),
+      installed: document.documentElement.classList.contains('codex-skin-workshop'),
       version: window.__CODEX_DREAM_SKIN_STATE__?.version ?? null,
-      stylePresent: Boolean(document.getElementById('codex-theme-studio-style')),
+      stylePresent: Boolean(document.getElementById('codex-skin-workshop-style')),
       chromePresent: Boolean(chrome),
       chromePointerEvents: getComputedStyle(chrome || document.body).pointerEvents,
       homeRoute: Boolean(homeRoute),
@@ -455,7 +455,7 @@ async function runWatch(options) {
     try {
       targets = await listAppTargets(options.port);
     } catch (error) {
-      console.error(`[theme-studio] ${new Date().toISOString()} ${error.message}`);
+      console.error(`[skin-workshop] ${new Date().toISOString()} ${error.message}`);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       continue;
     }
@@ -477,7 +477,7 @@ async function runWatch(options) {
         if (!probe?.codex) {
           session.close();
           if (!rejected.has(target.id)) {
-            console.error(`[theme-studio] rejected non-Codex app target ${target.id}`);
+            console.error(`[skin-workshop] rejected non-Codex app target ${target.id}`);
             rejected.add(target.id);
           }
           continue;
@@ -485,15 +485,15 @@ async function runWatch(options) {
         rejected.delete(target.id);
         session.on("Page.loadEventFired", () => {
           setTimeout(() => applyToSession(session, payload).catch((error) => {
-            console.error(`[theme-studio] reinject failed: ${error.message}`);
+            console.error(`[skin-workshop] reinject failed: ${error.message}`);
           }), 250);
         });
         await applyToSession(session, payload);
         sessions.set(target.id, session);
-        console.log(`[theme-studio] injected verified Codex target ${target.id} (${target.title || target.url})`);
+        console.log(`[skin-workshop] injected verified Codex target ${target.id} (${target.title || target.url})`);
       } catch (error) {
         session?.close();
-        console.error(`[theme-studio] inject failed for ${target.id}: ${error.message}`);
+        console.error(`[skin-workshop] inject failed for ${target.id}: ${error.message}`);
       }
     }
     await new Promise((resolve) => setTimeout(resolve, 900));
@@ -517,6 +517,6 @@ try {
   } else if (options.mode === "watch") await runWatch(options);
   else await runOneShot(options);
 } catch (error) {
-  console.error(`[theme-studio] ${error.stack || error.message}`);
+  console.error(`[skin-workshop] ${error.stack || error.message}`);
   process.exitCode = 1;
 }

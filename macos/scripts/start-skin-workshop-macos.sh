@@ -8,7 +8,7 @@ record_start_error() {
   local line="$2"
   ensure_state_root
   printf '%s exit=%s line=%s\n' "$(/bin/date -u '+%Y-%m-%dT%H:%M:%SZ')" "$code" "$line" >> "$START_ERROR_LOG"
-  printf 'Codex Theme Studio: start failed at line %s (exit %s). See %s\n' "$line" "$code" "$START_ERROR_LOG" >&2
+  printf 'Codex Skin Workshop: start failed at line %s (exit %s). See %s\n' "$line" "$code" "$START_ERROR_LOG" >&2
 }
 trap 'code=$?; record_start_error "$code" "$LINENO"' ERR
 
@@ -43,7 +43,7 @@ if verified_cdp_endpoint "$PORT"; then DEBUG_READY="true"; fi
 
 if codex_is_running && [ "$DEBUG_READY" = "false" ]; then
   if [ "$PROMPT_RESTART" = "true" ] && [ "$RESTART_EXISTING" = "false" ]; then
-    /usr/bin/osascript -e 'display dialog "Codex 需要重启一次才能启用 Theme Studio。" buttons {"取消", "重启并应用"} default button "重启并应用" with title "Codex Theme Studio"' >/dev/null \
+    /usr/bin/osascript -e 'display dialog "Codex 需要重启一次才能启用 Skin Workshop。" buttons {"取消", "重启并应用"} default button "重启并应用" with title "Codex Skin Workshop"' >/dev/null \
       || fail "Theme launch was cancelled."
     RESTART_EXISTING="true"
   fi
@@ -86,28 +86,28 @@ write_state "$PORT" "$INJECTOR_PID" "$INJECTOR_STARTED_AT" "$CODEX_PID"
 
 # Soft verify: keep the injector even if secondary selectors differ by Codex version.
 set +e
-"$NODE" "$INJECTOR" --verify --port "$PORT" --theme-dir "$THEME_DIR" --timeout-ms 20000 >/tmp/theme-studio-verify.$$.json 2>/dev/null
+"$NODE" "$INJECTOR" --verify --port "$PORT" --theme-dir "$THEME_DIR" --timeout-ms 20000 >/tmp/skin-workshop-verify.$$.json 2>/dev/null
 verify_code=$?
 set -e
 if [ "$verify_code" -ne 0 ]; then
   # One more force inject before giving up
   "$NODE" "$INJECTOR" --once --port "$PORT" --theme-dir "$THEME_DIR" --timeout-ms 15000 >/dev/null 2>&1 || true
   set +e
-  "$NODE" "$INJECTOR" --verify --port "$PORT" --theme-dir "$THEME_DIR" --timeout-ms 12000 >/tmp/theme-studio-verify.$$.json 2>/dev/null
+  "$NODE" "$INJECTOR" --verify --port "$PORT" --theme-dir "$THEME_DIR" --timeout-ms 12000 >/tmp/skin-workshop-verify.$$.json 2>/dev/null
   verify_code=$?
   set -e
 fi
 if [ "$verify_code" -ne 0 ]; then
   # If CSS markers are present, treat as soft success (do not kill injector).
-  if /usr/bin/grep -q '"installed": true' /tmp/theme-studio-verify.$$.json 2>/dev/null; then
-    printf 'Codex Theme Studio %s is active (soft verify) on port %s.\n' "$SKIN_VERSION" "$PORT"
-    /bin/rm -f /tmp/theme-studio-verify.$$.json
+  if /usr/bin/grep -q '"installed": true' /tmp/skin-workshop-verify.$$.json 2>/dev/null; then
+    printf 'Codex Skin Workshop %s is active (soft verify) on port %s.\n' "$SKIN_VERSION" "$PORT"
+    /bin/rm -f /tmp/skin-workshop-verify.$$.json
     exit 0
   fi
   /bin/launchctl remove "$INJECTOR_JOB_LABEL" >/dev/null 2>&1 || /bin/kill -TERM "$INJECTOR_PID" 2>/dev/null || true
-  /bin/rm -f "$STATE_PATH" /tmp/theme-studio-verify.$$.json
+  /bin/rm -f "$STATE_PATH" /tmp/skin-workshop-verify.$$.json
   fail "Injection verification failed. The injector was stopped; see $INJECTOR_ERROR_LOG"
 fi
-/bin/rm -f /tmp/theme-studio-verify.$$.json
+/bin/rm -f /tmp/skin-workshop-verify.$$.json
 
-printf 'Codex Theme Studio %s is active on loopback port %s.\n' "$SKIN_VERSION" "$PORT"
+printf 'Codex Skin Workshop %s is active on loopback port %s.\n' "$SKIN_VERSION" "$PORT"

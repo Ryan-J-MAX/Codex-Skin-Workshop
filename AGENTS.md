@@ -1,4 +1,4 @@
-# Agent notes — Codex Theme Studio
+# Agent notes — Codex Skin Workshop
 
 Instructions for AI / human maintainers working in this repo.
 

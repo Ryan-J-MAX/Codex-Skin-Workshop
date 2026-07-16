@@ -51,10 +51,10 @@ fi
 
 /bin/rm -f "$STATE_PATH"
 if [ "$UNINSTALL" = "true" ]; then
-  /bin/rm -f "$HOME/Desktop/Codex Theme Studio.command"
-  /bin/rm -f "$HOME/Desktop/Codex Theme Studio - Customize.command"
-  /bin/rm -f "$HOME/Desktop/Codex Theme Studio - Verify.command"
-  /bin/rm -f "$HOME/Desktop/Codex Theme Studio - Restore.command"
+  /bin/rm -f "$HOME/Desktop/Codex Skin Workshop.command"
+  /bin/rm -f "$HOME/Desktop/Codex Skin Workshop - Customize.command"
+  /bin/rm -f "$HOME/Desktop/Codex Skin Workshop - Verify.command"
+  /bin/rm -f "$HOME/Desktop/Codex Skin Workshop - Restore.command"
 fi
 
-printf 'Codex Theme Studio was removed and the requested macOS restore actions completed successfully.\n'
+printf 'Codex Skin Workshop was removed and the requested macOS restore actions completed successfully.\n'

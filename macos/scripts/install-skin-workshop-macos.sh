@@ -45,7 +45,7 @@ if [ "$IN_PLACE" = "false" ] && [ "$PROJECT_ROOT" != "$INSTALL_ROOT" ]; then
   install_args=(--in-place --port "$PORT")
   [ "$CREATE_LAUNCHERS" = "true" ] || install_args+=(--no-launchers)
   [ "$LAUNCH_AFTER_INSTALL" = "true" ] || install_args+=(--no-launch)
-  exec "$INSTALL_ROOT/scripts/install-theme-studio-macos.sh" "${install_args[@]}"
+  exec "$INSTALL_ROOT/scripts/install-skin-workshop-macos.sh" "${install_args[@]}"
 fi
 
 discover_codex_app
@@ -75,21 +75,21 @@ write_launcher() {
 
 if [ "$CREATE_LAUNCHERS" = "true" ]; then
   /bin/mkdir -p "$HOME/Desktop"
-  start_script="$(shell_quote "$SCRIPT_DIR/start-theme-studio-macos.sh")"
+  start_script="$(shell_quote "$SCRIPT_DIR/start-skin-workshop-macos.sh")"
   customize_script="$(shell_quote "$SCRIPT_DIR/customize-theme-macos.sh")"
-  verify_script="$(shell_quote "$SCRIPT_DIR/verify-theme-studio-macos.sh")"
-  restore_script="$(shell_quote "$SCRIPT_DIR/restore-theme-studio-macos.sh")"
-  screenshot="$(shell_quote "$HOME/Desktop/Codex Theme Studio Verification.png")"
-  write_launcher "$HOME/Desktop/Codex Theme Studio.command" "exec $start_script --port $PORT --prompt-restart"
-  write_launcher "$HOME/Desktop/Codex Theme Studio - Customize.command" "exec $customize_script"
-  write_launcher "$HOME/Desktop/Codex Theme Studio - Verify.command" "$verify_script --screenshot $screenshot && /usr/bin/open $screenshot"
-  write_launcher "$HOME/Desktop/Codex Theme Studio - Restore.command" "exec $restore_script --restore-base-theme --restart-codex"
+  verify_script="$(shell_quote "$SCRIPT_DIR/verify-skin-workshop-macos.sh")"
+  restore_script="$(shell_quote "$SCRIPT_DIR/restore-skin-workshop-macos.sh")"
+  screenshot="$(shell_quote "$HOME/Desktop/Codex Skin Workshop Verification.png")"
+  write_launcher "$HOME/Desktop/Codex Skin Workshop.command" "exec $start_script --port $PORT --prompt-restart"
+  write_launcher "$HOME/Desktop/Codex Skin Workshop - Customize.command" "exec $customize_script"
+  write_launcher "$HOME/Desktop/Codex Skin Workshop - Verify.command" "$verify_script --screenshot $screenshot && /usr/bin/open $screenshot"
+  write_launcher "$HOME/Desktop/Codex Skin Workshop - Restore.command" "exec $restore_script --restore-base-theme --restart-codex"
 fi
 
-printf 'Codex Theme Studio %s installed at %s for Codex %s using its signed Node.js %s.\n' \
+printf 'Codex Skin Workshop %s installed at %s for Codex %s using its signed Node.js %s.\n' \
   "$SKIN_VERSION" "$PROJECT_ROOT" "$CODEX_VERSION" "$NODE_VERSION"
 printf 'Use the Desktop launchers to customize, start, verify, or restore the official appearance.\n'
 
 if [ "$LAUNCH_AFTER_INSTALL" = "true" ]; then
-  "$SCRIPT_DIR/start-theme-studio-macos.sh" --port "$PORT" --prompt-restart
+  "$SCRIPT_DIR/start-skin-workshop-macos.sh" --port "$PORT" --prompt-restart
 fi

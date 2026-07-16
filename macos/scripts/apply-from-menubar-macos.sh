@@ -16,18 +16,18 @@ LOG_OUT="${STATE_ROOT}/menubar-apply.log"
 
 progress() {
   printf '[progress] %s\n' "$*" >>"$LOG_OUT" 2>/dev/null
-  /usr/bin/osascript -e "display notification \"$*\" with title \"Codex Theme Studio\"" >/dev/null 2>&1 &
+  /usr/bin/osascript -e "display notification \"$*\" with title \"Codex Skin Workshop\"" >/dev/null 2>&1 &
 }
 
 alert() {
-  /usr/bin/osascript -e "display alert \"Codex Theme Studio\" message \"$1\"" >/dev/null 2>&1 || true
+  /usr/bin/osascript -e "display alert \"Codex Skin Workshop\" message \"$1\"" >/dev/null 2>&1 || true
 }
 
 confirm() {
   local message="$1"
   local ok_label="${2:-继续}"
   /usr/bin/osascript <<APPLESCRIPT >/dev/null 2>&1
-display dialog "$(printf '%s' "$message" | /usr/bin/sed 's/"/\\"/g')" buttons {"取消", "$ok_label"} default button "$ok_label" with title "Codex Theme Studio"
+display dialog "$(printf '%s' "$message" | /usr/bin/sed 's/"/\\"/g')" buttons {"取消", "$ok_label"} default button "$ok_label" with title "Codex Skin Workshop"
 APPLESCRIPT
 }
 
@@ -75,7 +75,7 @@ fi
 ensure_state_root
 progress "启动/连接调试口（可能 10–30 秒）…"
 
-"$SCRIPT_DIR/start-theme-studio-macos.sh" --port "$PORT" --restart-existing >>"$LOG_OUT" 2>&1
+"$SCRIPT_DIR/start-skin-workshop-macos.sh" --port "$PORT" --restart-existing >>"$LOG_OUT" 2>&1
 code=$?
 
 if [ "$code" -eq 0 ]; then

@@ -15,7 +15,7 @@ discover_codex_app
 require_macos_runtime
 [ -f "$CONFIG_PATH" ] || fail "Codex config not found: $CONFIG_PATH"
 for required in \
-  "$PROJECT_ROOT/assets/theme-studio.css" \
+  "$PROJECT_ROOT/assets/skin-workshop.css" \
   "$PROJECT_ROOT/assets/renderer-inject.js" \
   "$PROJECT_ROOT/assets/theme.json" \
   "$PROJECT_ROOT/scripts/injector.mjs"; do
@@ -32,13 +32,13 @@ if [ -f "$STATE_PATH" ] && verified_cdp_endpoint "$PORT"; then
   "$NODE" "$INJECTOR" --verify --port "$PORT" --theme-dir "$THEME_DIR" --timeout-ms 12000 >/dev/null
   LIVE="true"
 fi
-[ "$REQUIRE_LIVE" = "false" ] || [ "$LIVE" = "true" ] || fail "No verified live Theme Studio session is active."
+[ "$REQUIRE_LIVE" = "false" ] || [ "$LIVE" = "true" ] || fail "No verified live Skin Workshop session is active."
 
 "$NODE" -e '
   const payload = JSON.parse(process.argv[1]);
   const result = {
     pass: true,
-    product: "Codex Theme Studio",
+    product: "Codex Skin Workshop",
     version: process.argv[2],
     platform: `darwin-${process.argv[3]}`,
     codexVersion: process.argv[4],

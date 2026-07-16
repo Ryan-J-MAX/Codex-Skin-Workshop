@@ -30,7 +30,7 @@ $mainProcesses = @(Get-Process ChatGPT -ErrorAction SilentlyContinue | Where-Obj
 
 if (-not $debugReady -and -not $ProfilePath -and $mainProcesses.Count -gt 0) {
   if (-not $RestartExisting) {
-    throw "Codex is already running without theme-studio debugging on port $Port. Close Codex or rerun with -RestartExisting."
+    throw "Codex is already running without skin-workshop debugging on port $Port. Close Codex or rerun with -RestartExisting."
   }
   foreach ($process in $mainProcesses) { [void]$process.CloseMainWindow() }
   Start-Sleep -Seconds 2
@@ -86,4 +86,4 @@ for ($attempt = 0; $attempt -lt 45; $attempt++) {
   if ($LASTEXITCODE -eq 0) { $verified = $true; break }
 }
 if (-not $verified) { throw 'Dream skin launched but verification failed. See injector logs.' }
-Write-Host "Codex Theme Studio is active on port $Port."
+Write-Host "Codex Skin Workshop is active on port $Port."

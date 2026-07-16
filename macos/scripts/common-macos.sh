@@ -5,14 +5,14 @@ set -euo pipefail
 if [ -z "${HOME:-}" ]; then
   CURRENT_USER="$(/usr/bin/id -un)"
   HOME="$(/usr/bin/dscl . -read "/Users/$CURRENT_USER" NFSHomeDirectory 2>/dev/null | /usr/bin/awk '{print $2}')"
-  [ -n "$HOME" ] || { printf 'Codex Theme Studio: could not resolve the current macOS home directory.\n' >&2; exit 1; }
+  [ -n "$HOME" ] || { printf 'Codex Skin Workshop: could not resolve the current macOS home directory.\n' >&2; exit 1; }
   export HOME
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd -P)"
 INJECTOR="$SCRIPT_DIR/injector.mjs"
-INSTALL_ROOT="$HOME/.codex/codex-theme-studio"
+INSTALL_ROOT="$HOME/.codex/codex-skin-workshop"
 STATE_ROOT="$HOME/Library/Application Support/CodexThemeStudio"
 STATE_PATH="$STATE_ROOT/state.json"
 THEME_BACKUP_PATH="$STATE_ROOT/theme-backup.json"
@@ -23,8 +23,8 @@ INJECTOR_ERROR_LOG="$STATE_ROOT/injector-error.log"
 APP_LOG="$STATE_ROOT/codex-launch.log"
 APP_ERROR_LOG="$STATE_ROOT/codex-launch-error.log"
 START_ERROR_LOG="$STATE_ROOT/start-error.log"
-CODEX_APP_JOB_LABEL="com.openai.codex-theme-studio.app"
-INJECTOR_JOB_LABEL="com.openai.codex-theme-studio.injector"
+CODEX_APP_JOB_LABEL="com.openai.codex-skin-workshop.app"
+INJECTOR_JOB_LABEL="com.openai.codex-skin-workshop.injector"
 EXPECTED_CODEX_TEAM_ID="${CODEX_EXPECTED_TEAM_ID:-2DC432GLL2}"
 SKIN_VERSION="1.1.1"
 
@@ -34,7 +34,7 @@ fail() {
     /bin/mkdir -p "$STATE_ROOT" 2>/dev/null || true
     printf '%s %s\n' "$(/bin/date -u '+%Y-%m-%dT%H:%M:%SZ')" "$message" >> "$START_ERROR_LOG" 2>/dev/null || true
   fi
-  printf 'Codex Theme Studio: %s\n' "$message" >&2
+  printf 'Codex Skin Workshop: %s\n' "$message" >&2
   exit 1
 }
 

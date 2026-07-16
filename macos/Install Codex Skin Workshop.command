@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd -P)"
-exec "$ROOT/scripts/install-theme-studio-macos.sh"
+exec "$ROOT/scripts/install-skin-workshop-macos.sh"

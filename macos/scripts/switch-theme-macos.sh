@@ -25,7 +25,7 @@ SRC="$THEMES_ROOT/$THEME_ID"
 
 progress() {
   printf '%s\n' "$*" >&2
-  /usr/bin/osascript -e "display notification \"$*\" with title \"Codex Theme Studio\"" >/dev/null 2>&1 || true
+  /usr/bin/osascript -e "display notification \"$*\" with title \"Codex Skin Workshop\"" >/dev/null 2>&1 || true
 }
 
 progress "Switching..."
@@ -58,10 +58,10 @@ fi
 
 # Cold path only when debug port is missing
 progress "CDP not ready, full start..."
-if "$SCRIPT_DIR/start-theme-studio-macos.sh" --port "$PORT" --restart-existing; then
+if "$SCRIPT_DIR/start-skin-workshop-macos.sh" --port "$PORT" --restart-existing; then
   progress "Done: ${THEME_NAME}"
   exit 0
 fi
 
-/usr/bin/osascript -e 'display alert "Codex Theme Studio" message "Theme switched but inject failed. Click Apply Skin."' >/dev/null 2>&1 || true
+/usr/bin/osascript -e 'display alert "Codex Skin Workshop" message "Theme switched but inject failed. Click Apply Skin."' >/dev/null 2>&1 || true
 exit 1

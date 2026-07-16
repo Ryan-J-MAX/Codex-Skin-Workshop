@@ -3,7 +3,7 @@ import path from "node:path";
 
 const [mode, configPath, backupPath] = process.argv.slice(2);
 // Backup these keys so Restore can put them back. Do NOT force dark —
-// Theme Studio CSS auto-adapts to light/dark via data-dream-shell.
+// Skin Workshop CSS auto-adapts to light/dark via data-dream-shell.
 const settings = new Map([
   ["appearanceTheme", null],
   ["appearanceDarkCodeThemeId", null],

@@ -1,4 +1,4 @@
-# Codex Theme Studio
+# Codex Skin Workshop
 
 Unofficial macOS theme studio for the **official Codex Desktop** app.
 
@@ -21,16 +21,16 @@ This project injects through **local loopback CDP**. It does **not** modify the 
 ./tests/run-tests.sh
 
 # 2) Install to the stable path and create Desktop launchers
-./scripts/install-theme-studio-macos.sh --no-launch
+./scripts/install-skin-workshop-macos.sh --no-launch
 
 # 3) Customize with your image (Finder picker if you omit flags)
-~/.codex/codex-theme-studio/scripts/customize-theme-macos.sh
+~/.codex/codex-skin-workshop/scripts/customize-theme-macos.sh
 
 # 4) Start / re-apply, verify, or restore via Desktop:
-#    Codex Theme Studio.command
-#    Customize Codex Theme Studio.command
-#    Verify Codex Theme Studio.command
-#    Restore Codex Theme Studio.command
+#    Codex Skin Workshop.command
+#    Customize Codex Skin Workshop.command
+#    Verify Codex Skin Workshop.command
+#    Restore Codex Skin Workshop.command
 
 # 5) Optional: menu bar (SwiftBar) — apply / pause / change image
 ./Install\ Menu\ Bar.command
@@ -41,7 +41,7 @@ Install location after step 2:
 
 | Item | Path |
 | --- | --- |
-| Engine | `~/.codex/codex-theme-studio` |
+| Engine | `~/.codex/codex-skin-workshop` |
 | State / logs / user images | `~/Library/Application Support/CodexThemeStudio` |
 | Theme backup | under Application Support (`theme-backup.json`) |
 
@@ -53,7 +53,7 @@ To build the “double-click install” folder layout for non-git users:
 ./scripts/build-client-release.sh "$HOME/Desktop/Codex 主题编辑器.zip"
 ```
 
-That ZIP contains a visible installer plus a hidden `.codex-theme-studio` engine. Do not ship only CSS/images.
+That ZIP contains a visible installer plus a hidden `.codex-skin-workshop` engine. Do not ship only CSS/images.
 
 ## How it works (security boundary)
 
@@ -77,7 +77,7 @@ CDP is powerful and unauthenticated on loopback. Prefer Restore when you are don
 CLI example:
 
 ```bash
-~/.codex/codex-theme-studio/scripts/customize-theme-macos.sh \
+~/.codex/codex-skin-workshop/scripts/customize-theme-macos.sh \
   --image "/path/to/image.png" \
   --name "My theme" \
   --accent "#7cff46" \
@@ -88,7 +88,7 @@ CLI example:
 Reset to the bundled abstract demo:
 
 ```bash
-~/.codex/codex-theme-studio/scripts/customize-theme-macos.sh --reset-demo
+~/.codex/codex-skin-workshop/scripts/customize-theme-macos.sh --reset-demo
 ```
 
 ## License
