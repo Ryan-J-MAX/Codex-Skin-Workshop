@@ -1,62 +1,75 @@
 /* ========================================
-   Codex Skin Workshop — v4 Final
-   Only touch background/glass, preserve ALL text colors
-   NO !important on text colors, NO div/span/p selectors
+   Codex Skin Workshop — v5
+   Fix: sidebar text invisible on dark bg
    ======================================== */
 
-/* Background gradient — only body */
+/* Background — lighter, not pure black */
 html.codex-skin-workshop body {
   background:
-    radial-gradient(ellipse at 80% 10%, rgba(99, 102, 241, 0.08), transparent 50%),
-    radial-gradient(ellipse at 20% 90%, rgba(168, 85, 247, 0.06), transparent 50%),
-    linear-gradient(145deg, #0a0a14 0%, #0d0d1e 50%, #0a0a12 100%) !important;
+    radial-gradient(ellipse at 80% 10%, rgba(99, 102, 241, 0.06), transparent 50%),
+    radial-gradient(ellipse at 20% 90%, rgba(168, 85, 247, 0.04), transparent 50%),
+    linear-gradient(145deg, #12121e 0%, #151528 50%, #121220 100%) !important;
 }
 
-/* Sidebar glass */
+/* Sidebar: glass + light text */
 html.codex-skin-workshop aside.app-shell-left-panel {
-  background: rgba(10, 10, 20, 0.85) !important;
+  background: rgba(18, 18, 32, 0.9) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  border-right: 1px solid rgba(99, 102, 241, 0.15) !important;
+  border-right: 1px solid rgba(99, 102, 241, 0.12) !important;
+  color: #e0e0f0 !important;
 }
 
-/* Sidebar hover/active */
+/* Sidebar text elements */
+html.codex-skin-workshop aside.app-shell-left-panel nav,
+html.codex-skin-workshop aside.app-shell-left-panel button,
+html.codex-skin-workshop aside.app-shell-left-panel a,
+html.codex-skin-workshop aside.app-shell-left-panel span,
+html.codex-skin-workshop aside.app-shell-left-panel div {
+  color: #c8c8e0 !important;
+}
+
+/* Sidebar hover */
 html.codex-skin-workshop aside.app-shell-left-panel button:hover {
   background: rgba(99, 102, 241, 0.12) !important;
+  color: #ffffff !important;
 }
+
+/* Sidebar active */
 html.codex-skin-workshop aside.app-shell-left-panel [aria-current="page"] {
   background: rgba(99, 102, 241, 0.15) !important;
   border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  color: #ffffff !important;
 }
 
 /* Header bar */
 html.codex-skin-workshop main.main-surface > header {
-  background: rgba(10, 10, 20, 0.8) !important;
+  background: rgba(18, 18, 32, 0.85) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border-bottom: 1px solid rgba(99, 102, 241, 0.1) !important;
 }
 
-/* Composer input area */
+/* Composer input */
 html.codex-skin-workshop .composer-surface-chrome {
-  background: rgba(16, 16, 32, 0.75) !important;
+  background: rgba(22, 22, 40, 0.8) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(99, 102, 241, 0.15) !important;
+  border: 1px solid rgba(99, 102, 241, 0.12) !important;
 }
 
-/* Caret color only */
+/* Caret */
 html.codex-skin-workshop .ProseMirror {
   caret-color: #818cf8 !important;
 }
 
-/* User message bubbles — background only, NO text color */
+/* User messages */
 html.codex-skin-workshop [data-message-author-role="user"] {
-  background: rgba(99, 102, 241, 0.12) !important;
-  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  background: rgba(99, 102, 241, 0.1) !important;
+  border: 1px solid rgba(99, 102, 241, 0.15) !important;
 }
 
-/* Accent color — only links and selected tabs */
+/* Links & tabs */
 html.codex-skin-workshop a,
 html.codex-skin-workshop [role="tab"][aria-selected="true"] {
   color: #818cf8 !important;
@@ -65,12 +78,12 @@ html.codex-skin-workshop [role="tab"][aria-selected="true"] {
 /* Scrollbar */
 html.codex-skin-workshop ::-webkit-scrollbar { width: 6px !important; }
 html.codex-skin-workshop ::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.3) !important;
+  background: rgba(99, 102, 241, 0.25) !important;
   border-radius: 3px !important;
 }
 
-/* Code blocks */
+/* Code blocks border */
 html.codex-skin-workshop pre {
-  border: 1px solid rgba(99, 102, 241, 0.1) !important;
+  border: 1px solid rgba(99, 102, 241, 0.08) !important;
   border-radius: 8px !important;
 }
