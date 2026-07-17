@@ -3,19 +3,16 @@
    Fix: sidebar text invisible on dark bg
    ======================================== */
 
-/* Background — theme image + overlay */
-html.codex-skin-workshop body {
+/* Background — theme image on main surface */
+html.codex-skin-workshop main.main-surface {
   background:
-    var(--skin-workshop-art) center/cover no-repeat fixed,
-    linear-gradient(145deg, #12121e 0%, #151528 50%, #121220 100%) !important;
+    linear-gradient(rgba(10, 10, 20, 0.7), rgba(10, 10, 20, 0.7)),
+    var(--skin-workshop-art) center/cover no-repeat fixed !important;
 }
 
-/* Overlay for readability */
-html.codex-skin-workshop body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: -1;
-  background: rgba(10, 10, 20, 0.75);
-  pointer-events: none;
+/* Body base */
+html.codex-skin-workshop body {
+  background: #12121e !important;
 }
 
 /* Sidebar: glass + light text */
