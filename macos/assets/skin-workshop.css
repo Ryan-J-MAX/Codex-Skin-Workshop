@@ -1,99 +1,104 @@
 /* ========================================
-   Codex Skin Workshop — v5
-   Fix: sidebar text invisible on dark bg
+   Codex Skin Workshop — v9 (Target Style)
+   Clear image + glass UI elements
    ======================================== */
 
-/* Background — theme image on main surface */
-html.codex-skin-workshop main.main-surface {
-  background:
-    linear-gradient(rgba(6, 6, 14, 0.88), rgba(6, 6, 14, 0.88)),
-    var(--skin-workshop-art) center/cover no-repeat fixed !important;
-}
-
-/* Body base */
+/* Body — just the image, no dark overlay */
 html.codex-skin-workshop body {
-  background: #12121e !important;
+  background: var(--skin-workshop-art) center/cover no-repeat fixed !important;
 }
 
-/* Sidebar: glass + light text */
+/* Sidebar — frosted glass, semi-transparent dark */
 html.codex-skin-workshop aside.app-shell-left-panel {
-  background: rgba(18, 18, 32, 0.9) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-right: 1px solid rgba(99, 102, 241, 0.12) !important;
-  color: #e0e0f0 !important;
+  background: rgba(20, 20, 35, 0.72) !important;
+  backdrop-filter: blur(24px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.2) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #f0f0f5 !important;
 }
 
-/* Sidebar text elements */
+/* Sidebar text */
 html.codex-skin-workshop aside.app-shell-left-panel nav,
 html.codex-skin-workshop aside.app-shell-left-panel button,
 html.codex-skin-workshop aside.app-shell-left-panel a,
 html.codex-skin-workshop aside.app-shell-left-panel span,
 html.codex-skin-workshop aside.app-shell-left-panel div {
-  color: #c8c8e0 !important;
+  color: #e0e0e8 !important;
 }
 
-/* Sidebar hover */
 html.codex-skin-workshop aside.app-shell-left-panel button:hover {
-  background: rgba(99, 102, 241, 0.12) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
   color: #ffffff !important;
 }
 
-/* Sidebar active */
 html.codex-skin-workshop aside.app-shell-left-panel [aria-current="page"] {
-  background: rgba(99, 102, 241, 0.15) !important;
-  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  background: rgba(99, 102, 241, 0.2) !important;
+  border: 1px solid rgba(99, 102, 241, 0.25) !important;
   color: #ffffff !important;
 }
 
-/* Header bar */
+/* Header bar — glass */
 html.codex-skin-workshop main.main-surface > header {
-  background: rgba(18, 18, 32, 0.85) !important;
+  background: rgba(20, 20, 35, 0.6) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(99, 102, 241, 0.1) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Composer input */
+/* Main content — very light overlay just for text readability */
+html.codex-skin-workshop main.main-surface {
+  background: rgba(10, 10, 18, 0.15) !important;
+}
+
+/* Composer input — solid-ish dark glass */
 html.codex-skin-workshop .composer-surface-chrome {
-  background: rgba(22, 22, 40, 0.8) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(99, 102, 241, 0.12) !important;
+  background: rgba(28, 28, 48, 0.82) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
 }
 
 /* Caret */
 html.codex-skin-workshop .ProseMirror {
-  caret-color: #818cf8 !important;
+  caret-color: #a5b4fc !important;
 }
 
-/* AI messages — solid background for readability */
+/* AI messages — solid card background */
 html.codex-skin-workshop [data-message-author-role="assistant"] {
-  background: rgba(20, 20, 40, 0.85) !important;
-  border: 1px solid rgba(99, 102, 241, 0.1) !important;
+  background: rgba(25, 25, 45, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 14px !important;
 }
 
-/* User messages */
+/* User messages — accent tint */
 html.codex-skin-workshop [data-message-author-role="user"] {
-  background: rgba(99, 102, 241, 0.18) !important;
-  border: 1px solid rgba(99, 102, 241, 0.25) !important;
+  background: rgba(99, 102, 241, 0.15) !important;
+  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  border-radius: 14px !important;
 }
 
 /* Links & tabs */
 html.codex-skin-workshop a,
 html.codex-skin-workshop [role="tab"][aria-selected="true"] {
-  color: #818cf8 !important;
+  color: #a5b4fc !important;
 }
 
 /* Scrollbar */
 html.codex-skin-workshop ::-webkit-scrollbar { width: 6px !important; }
 html.codex-skin-workshop ::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.25) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
   border-radius: 3px !important;
 }
+html.codex-skin-workshop ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
 
-/* Code blocks border */
+/* Code blocks */
 html.codex-skin-workshop pre {
-  border: 1px solid rgba(99, 102, 241, 0.08) !important;
-  border-radius: 8px !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 10px !important;
 }
