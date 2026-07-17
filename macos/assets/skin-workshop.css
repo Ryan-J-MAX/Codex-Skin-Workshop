@@ -1,23 +1,21 @@
 /* ========================================
-   Codex Skin Workshop — v9 (Target Style)
-   Clear image + glass UI elements
+   Codex Skin Workshop — v11
+   Dark glass everywhere, text always readable
    ======================================== */
 
-/* Body — just the image, no dark overlay */
+/* Body — image background */
 html.codex-skin-workshop body {
   background: var(--skin-workshop-art) center/cover no-repeat fixed !important;
 }
 
-/* Sidebar — frosted glass, semi-transparent dark */
+/* ===== Sidebar ===== */
 html.codex-skin-workshop aside.app-shell-left-panel {
-  background: rgba(20, 20, 35, 0.72) !important;
+  background: rgba(12, 12, 24, 0.82) !important;
   backdrop-filter: blur(24px) saturate(1.2) !important;
   -webkit-backdrop-filter: blur(24px) saturate(1.2) !important;
-  border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
   color: #f0f0f5 !important;
 }
-
-/* Sidebar text */
 html.codex-skin-workshop aside.app-shell-left-panel nav,
 html.codex-skin-workshop aside.app-shell-left-panel button,
 html.codex-skin-workshop aside.app-shell-left-panel a,
@@ -25,97 +23,116 @@ html.codex-skin-workshop aside.app-shell-left-panel span,
 html.codex-skin-workshop aside.app-shell-left-panel div {
   color: #e0e0e8 !important;
 }
-
 html.codex-skin-workshop aside.app-shell-left-panel button:hover {
   background: rgba(255, 255, 255, 0.08) !important;
   color: #ffffff !important;
 }
-
 html.codex-skin-workshop aside.app-shell-left-panel [aria-current="page"] {
   background: rgba(99, 102, 241, 0.2) !important;
   border: 1px solid rgba(99, 102, 241, 0.25) !important;
   color: #ffffff !important;
 }
 
-/* Header bar — glass */
-html.codex-skin-workshop main.main-surface > header {
-  background: rgba(20, 20, 35, 0.6) !important;
+/* ===== Main surface base ===== */
+html.codex-skin-workshop main.main-surface {
+  background: transparent !important;
+}
+
+/* ===== Header / Top bar ===== */
+html.codex-skin-workshop main.main-surface > header,
+html.codex-skin-workshop [class*="header"],
+html.codex-skin-workshop header[class*="surface"] {
+  background: rgba(12, 12, 24, 0.8) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
 }
 
-/* Main content — very light overlay just for text readability */
-html.codex-skin-workshop main.main-surface {
-  background: rgba(10, 10, 18, 0.15) !important;
-}
-
-/* Home page cards — glass instead of white */
-html.codex-skin-workshop main.main-surface .bg-white,
-html.codex-skin-workshop main.main-surface [class*="bg-token-surface"] {
-  background: rgba(255, 255, 255, 0.1) !important;
+/* ===== Search / Command bar (white bar fix) ===== */
+html.codex-skin-workshop [class*="command-bar"],
+html.codex-skin-workshop [class*="search-bar"],
+html.codex-skin-workshop [class*="input-surface"],
+html.codex-skin-workshop [data-testid*="search"] {
+  background: rgba(20, 20, 40, 0.9) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #f0f0f5 !important;
 }
 
-/* Big headings — text shadow for readability */
+/* ===== Home page title ===== */
 html.codex-skin-workshop main.main-surface h1,
 html.codex-skin-workshop main.main-surface h2,
-html.codex-skin-workshop main.main-surface [class*="text-3xl"],
-html.codex-skin-workshop main.main-surface [class*="text-4xl"] {
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) !important;
+html.codex-skin-workshop [class*="text-3xl"],
+html.codex-skin-workshop [class*="text-4xl"] {
+  color: #ffffff !important;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.7), 0 1px 4px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Composer input — solid-ish dark glass */
-html.codex-skin-workshop .composer-surface-chrome {
-  background: rgba(28, 28, 48, 0.82) !important;
+/* ===== Cards / Buttons on home ===== */
+html.codex-skin-workshop main.main-surface .bg-white,
+html.codex-skin-workshop main.main-surface [class*="bg-token-surface"],
+html.codex-skin-workshop main.main-surface [class*="bg-token-main-surface"] {
+  background: rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #f0f0f5 !important;
 }
 
-/* Caret */
-html.codex-skin-workshop .ProseMirror {
-  caret-color: #a5b4fc !important;
+/* ===== Chat messages container ===== */
+html.codex-skin-workshop [class*="conversation-content"],
+html.codex-skin-workshop [class*="message-list"],
+html.codex-skin-workshop article {
+  background: rgba(12, 12, 24, 0.6) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
 }
 
-/* AI messages — solid card background */
+/* AI messages */
 html.codex-skin-workshop [data-message-author-role="assistant"] {
-  background: rgba(25, 25, 45, 0.8) !important;
+  background: rgba(20, 20, 40, 0.85) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-radius: 14px !important;
 }
 
-/* User messages — accent tint */
+/* User messages */
 html.codex-skin-workshop [data-message-author-role="user"] {
-  background: rgba(99, 102, 241, 0.15) !important;
-  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  background: rgba(99, 102, 241, 0.18) !important;
+  border: 1px solid rgba(99, 102, 241, 0.25) !important;
   border-radius: 14px !important;
 }
 
-/* Links & tabs */
+/* ===== Composer input ===== */
+html.codex-skin-workshop .composer-surface-chrome {
+  background: rgba(20, 20, 40, 0.9) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+}
+html.codex-skin-workshop .ProseMirror {
+  caret-color: #a5b4fc !important;
+}
+
+/* ===== Links & tabs ===== */
 html.codex-skin-workshop a,
 html.codex-skin-workshop [role="tab"][aria-selected="true"] {
   color: #a5b4fc !important;
 }
 
-/* Scrollbar */
-html.codex-skin-workshop ::-webkit-scrollbar { width: 6px !important; }
-html.codex-skin-workshop ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border-radius: 3px !important;
-}
-html.codex-skin-workshop ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25) !important;
-}
-
-/* Code blocks */
+/* ===== Code blocks ===== */
 html.codex-skin-workshop pre {
-  background: rgba(0, 0, 0, 0.4) !important;
+  background: rgba(0, 0, 0, 0.5) !important;
   border: 1px solid rgba(255, 255, 255, 0.06) !important;
   border-radius: 10px !important;
+}
+
+/* ===== Scrollbar ===== */
+html.codex-skin-workshop ::-webkit-scrollbar { width: 6px !important; }
+html.codex-skin-workshop ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-radius: 3px !important;
 }
