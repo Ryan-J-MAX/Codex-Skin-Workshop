@@ -1,192 +1,70 @@
 /* ========================================
-   Codex Skin Workshop — Core Styles
-   Target: Codex/ChatGPT desktop app (v2)
+   Codex Skin Workshop — v2 Core Styles
+   Minimal, clean, let Codex UI breathe
    ======================================== */
 
-:root.codex-skin-workshop {
+/* Only set very subtle background tint on body */
+html.codex-skin-workshop body {
   color-scheme: dark !important;
 }
 
-/* ========== 全局背景 ========== */
-html.codex-skin-workshop body {
-  background: linear-gradient(145deg, #0a0a12 0%, #10101e 50%, #0d0d18 100%) !important;
-  color: #e8e8f0 !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
-}
-
-/* ========== 左侧面板（侧栏） ========== */
+/* ========== Sidebar tweaks ========== */
 html.codex-skin-workshop aside.app-shell-left-panel {
-  background: linear-gradient(180deg, #0f0f1e 0%, #12122a 100%) !important;
   border-right: 1px solid rgba(99, 102, 241, 0.15) !important;
-  color: #e8e8f0 !important;
-}
-
-html.codex-skin-workshop aside.app-shell-left-panel nav {
-  background: transparent !important;
-}
-
-html.codex-skin-workshop aside.app-shell-left-panel button,
-html.codex-skin-workshop aside.app-shell-left-panel a,
-html.codex-skin-workshop aside.app-shell-left-panel span,
-html.codex-skin-workshop aside.app-shell-left-panel div {
-  color: #d0d0f0 !important;
-  opacity: 0.92 !important;
 }
 
 html.codex-skin-workshop aside.app-shell-left-panel button:hover {
-  background: rgba(99, 102, 241, 0.15) !important;
-  color: #e8e8ff !important;
-  opacity: 1 !important;
+  background: rgba(99, 102, 241, 0.08) !important;
 }
 
-html.codex-skin-workshop aside.app-shell-left-panel [aria-current="page"],
-html.codex-skin-workshop aside.app-shell-left-panel [class~="bg-token-list-hover-background"] {
-  background: rgba(99, 102, 241, 0.2) !important;
-  border: 1px solid rgba(99, 102, 241, 0.25) !important;
-  color: #e8e8ff !important;
-  opacity: 1 !important;
-}
-
-/* ========== 主内容区域 ========== */
-html.codex-skin-workshop main.main-surface {
-  background:
-    radial-gradient(ellipse at 80% 10%, rgba(99, 102, 241, 0.06), transparent 50%),
-    radial-gradient(ellipse at 20% 90%, rgba(168, 85, 247, 0.04), transparent 50%),
-    linear-gradient(180deg, #0e0e1e 0%, #0a0a15 100%) !important;
-}
-
-html.codex-skin-workshop main.main-surface > header {
-  background: rgba(15, 15, 30, 0.9) !important;
-  border-bottom: 1px solid rgba(99, 102, 241, 0.12) !important;
-  backdrop-filter: blur(12px) !important;
-  color: #e0e0f0 !important;
-}
-
-/* ========== 输入框区域 ========== */
-html.codex-skin-workshop .composer-surface-chrome,
-html.codex-skin-workshop [class*="composer"] {
-  background: rgba(22, 22, 45, 0.92) !important;
+html.codex-skin-workshop aside.app-shell-left-panel [aria-current="page"] {
+  background: rgba(99, 102, 241, 0.12) !important;
   border: 1px solid rgba(99, 102, 241, 0.2) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(99, 102, 241, 0.06) !important;
 }
 
-html.codex-skin-workshop .composer-surface-chrome textarea,
-html.codex-skin-workshop .composer-surface-chrome input,
-html.codex-skin-workshop .composer-surface-chrome [contenteditable],
-html.codex-skin-workshop .ProseMirror {
-  color: #e8e8f0 !important;
-  caret-color: #818cf8 !important;
-  background: transparent !important;
-}
-
-html.codex-skin-workshop .composer-surface-chrome label,
-html.codex-skin-workshop .composer-surface-chrome span,
-html.codex-skin-workshop .composer-surface-chrome div,
-html.codex-skin-workshop [class*="composer"] label,
-html.codex-skin-workshop [class*="composer"] span,
-html.codex-skin-workshop [class*="composer"] div {
-  color: #c8c8e0 !important;
-}
-
-/* ========== 消息气泡 ========== */
-html.codex-skin-workshop article,
-html.codex-skin-workshop [data-message-author-role] {
-  border-radius: 14px !important;
-  background: rgba(25, 25, 48, 0.6) !important;
-  border: 1px solid rgba(99, 102, 241, 0.1) !important;
-  backdrop-filter: blur(6px) !important;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15) !important;
-}
-
-html.codex-skin-workshop [data-message-author-role="user"] {
-  background: rgba(99, 102, 241, 0.1) !important;
-  border-color: rgba(99, 102, 241, 0.15) !important;
-  box-shadow: 0 2px 12px rgba(99, 102, 241, 0.08) !important;
-}
-
-/* ========== 选项卡/标签页 ========== */
-html.codex-skin-workshop [role="tab"],
-html.codex-skin-workshop [class*="tab"],
-html.codex-skin-workshop button[class*="tab"] {
-  color: #c0c0e0 !important;
-  background: transparent !important;
-  border: none !important;
-  font-weight: 500 !important;
-}
-
-html.codex-skin-workshop [role="tab"]:hover,
-html.codex-skin-workshop [class*="tab"]:hover {
-  color: #e0e0f0 !important;
-}
-
-html.codex-skin-workshop [role="tab"][aria-selected="true"],
-html.codex-skin-workshop [class*="tab"].active {
-  color: #818cf8 !important;
-  border-bottom: 2px solid #818cf8 !important;
-  font-weight: 600 !important;
-}
-
-/* ========== 代码块 ========== */
-html.codex-skin-workshop pre,
-html.codex-skin-workshop code {
-  background: rgba(0, 0, 0, 0.3) !important;
-  border: 1px solid rgba(99, 102, 241, 0.1) !important;
-  border-radius: 8px !important;
-}
-
-/* ========== 全局文字/链接/图标 ========== */
+/* ========== Accent color ========== */
 html.codex-skin-workshop a,
 html.codex-skin-workshop [class*="link"] {
   color: #818cf8 !important;
 }
 
-html.codex-skin-workshop a:hover,
-html.codex-skin-workshop [class*="link"]:hover {
-  color: #a5b4fc !important;
-}
-
-html.codex-skin-workshop svg {
-  opacity: 0.85 !important;
-}
-
-html.codex-skin-workshop h1, html.codex-skin-workshop h2, html.codex-skin-workshop h3,
-html.codex-skin-workshop h4, html.codex-skin-workshop h5, html.codex-skin-workshop h6,
-html.codex-skin-workshop strong, html.codex-skin-workshop b {
-  color: #ececf8 !important;
-}
-
-html.codex-skin-workshop p, html.codex-skin-workshop li, html.codex-skin-workshop td, html.codex-skin-workshop th {
-  color: #d8d8ee !important;
-}
-
-/* ========== 按钮 ========== */
-html.codex-skin-workshop button[class~="bg-token-foreground"] {
-  background: linear-gradient(135deg, #6366f1, #818cf8) !important;
-  color: #fff !important;
-  border: none !important;
-  box-shadow: 0 2px 12px rgba(99, 102, 241, 0.3) !important;
-}
-
-html.codex-skin-workshop button[class~="bg-token-foreground"]:hover {
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4) !important;
-  transform: translateY(-1px) !important;
-}
-
-/* ========== 滚动条 ========== */
+/* ========== Scrollbar ========== */
 html.codex-skin-workshop ::-webkit-scrollbar {
   width: 6px !important;
 }
-
-html.codex-skin-workshop ::-webkit-scrollbar-track {
-  background: transparent !important;
-}
-
 html.codex-skin-workshop ::-webkit-scrollbar-thumb {
   background: rgba(99, 102, 241, 0.3) !important;
   border-radius: 3px !important;
 }
-
 html.codex-skin-workshop ::-webkit-scrollbar-thumb:hover {
   background: rgba(99, 102, 241, 0.5) !important;
+}
+
+/* ========== Message bubbles ========== */
+html.codex-skin-workshop [data-message-author-role="user"] {
+  border: 1px solid rgba(99, 102, 241, 0.15) !important;
+}
+
+/* ========== Tabs ========== */
+html.codex-skin-workshop [role="tab"][aria-selected="true"] {
+  color: #818cf8 !important;
+  border-bottom: 2px solid #818cf8 !important;
+}
+
+/* ========== Buttons ========== */
+html.codex-skin-workshop button[class~="bg-token-foreground"] {
+  background: linear-gradient(135deg, #6366f1, #818cf8) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+/* ========== Code blocks ========== */
+html.codex-skin-workshop pre {
+  border: 1px solid rgba(99, 102, 241, 0.1) !important;
+  border-radius: 8px !important;
+}
+
+/* ========== Caret ========== */
+html.codex-skin-workshop .ProseMirror {
+  caret-color: #818cf8 !important;
 }
