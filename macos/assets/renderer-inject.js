@@ -113,50 +113,36 @@
     return "light";
   };
 
-  const applyTheme = (root, shell) => {
-    const colors = THEME.colors || {};
-    const accent = colors.accent || (shell === "light" ? "#e25563" : "#7cff46");
-    const accentAlt = colors.accentAlt || accent;
-    const secondary = colors.secondary || (shell === "light" ? "#f3a8af" : "#36d7e8");
-    const highlight = colors.highlight || (shell === "light" ? "#c93d4c" : "#642a8c");
+  const applyTheme = (root) => {
+    const colors = THEME.colors && typeof THEME.colors === "object" ? THEME.colors : {};
+    const variables = {
+      "--ds-bg": colors.background || "#071116",
+      "--ds-panel": colors.panel || "#0b1a20",
+      "--ds-panel-2": colors.panelAlt || "#10272c",
+      "--ds-green": colors.accent || "#7cff46",
+      "--ds-lime": colors.accentAlt || colors.accent || "#b8ff3d",
+      "--ds-cyan": colors.secondary || "#36d7e8",
+      "--ds-purple": colors.highlight || colors.accent || "#642a8c",
+      "--ds-text": colors.text || "#e9fff1",
+      "--ds-muted": colors.muted || "#9ebdb3",
+      "--ds-line": colors.line || "rgba(124, 255, 70, .28)",
+    };
 
-    let variables;
-    if (shell === "light") {
-      // Structural tokens stay light so banners stay readable; accents follow theme.
-      variables = {
-        "--ds-bg": "#f6f2f3",
-        "--ds-panel": "#ffffff",
-        "--ds-panel-2": "#fff7f8",
-        "--ds-green": accent,
-        "--ds-lime": accentAlt,
-        "--ds-cyan": secondary,
-        "--ds-purple": highlight,
-        "--ds-text": "#1f1a1b",
-        "--ds-muted": "#6b5f62",
-        "--ds-line": colors.line || "rgba(196, 120, 128, .22)",
-      };
-    } else {
-      variables = {
-        "--ds-bg": colors.background || "#071116",
-        "--ds-panel": colors.panel || "#0b1a20",
-        "--ds-panel-2": colors.panelAlt || "#10272c",
-        "--ds-green": accent,
-        "--ds-lime": accentAlt,
-        "--ds-cyan": secondary,
-        "--ds-purple": highlight,
-        "--ds-text": colors.text || "#e9fff1",
-        "--ds-muted": colors.muted || "#9ebdb3",
-        "--ds-line": colors.line || "rgba(124, 255, 70, .28)",
-      };
-    }
-
-    for (const [name, value] of Object.entries(variables)) {
-      if (typeof value === "string" && value) root.style.setProperty(name, value);
-    }
-    root.style.setProperty("--skin-workshop-name", cssString(THEME.name || "Codex Skin Workshop"));
-    root.style.setProperty("--skin-workshop-tagline", cssString(THEME.tagline || "Make something wonderful."));
-    root.style.setProperty("--skin-workshop-project-prefix", cssString(THEME.projectPrefix || "选择项目 · "));
-    root.style.setProperty("--skin-workshop-project-label", cssString(THEME.projectLabel || "◉  选择项目"));
+    // Theme colors are runtime data. Applying them as inline custom properties
+    // makes them win over the fallback palette in skin-workshop.css without
+    // rebuilding that stylesheet for every downloaded theme.
+    const setProperty = (name, value) => {
+      if (typeof value === "string" && value && root.style.getPropertyValue(name) !== value) {
+        root.style.setProperty(name, value);
+      }
+    };
+    for (const [name, value] of Object.entries(variables)) setProperty(name, value);
+    setProperty("--skin-workshop-name", cssString(THEME.name || "Codex Skin Workshop"));
+    setProperty("--skin-workshop-tagline", cssString(THEME.tagline || "Make something wonderful."));
+    setProperty("--skin-workshop-project-prefix", cssString(THEME.projectPrefix || "选择项目 · "));
+    setProperty("--skin-workshop-project-label", cssString(THEME.projectLabel || "◉  选择项目"));
+    root.dataset.dreamTheme = THEME.id || "custom";
+    return variables;
   };
 
   const existingStyle = document.getElementById(STYLE_ID);
@@ -165,6 +151,7 @@
     existingStyle.dataset.themeStudioVersion = VERSION;
   }
 
+  let appliedThemeVariables = null;
   const ensure = () => {
     if (window[DISABLED_KEY]) return;
     const root = document.documentElement;
@@ -173,7 +160,7 @@
     root.classList.add("codex-skin-workshop");
     root.setAttribute(SHELL_ATTR, shell);
     root.style.setProperty("--skin-workshop-art", `url("${artUrl}")`);
-    applyTheme(root, shell);
+    appliedThemeVariables = applyTheme(root);
 
     let style = document.getElementById(STYLE_ID);
     if (!style) {
@@ -233,6 +220,7 @@
     window[DISABLED_KEY] = true;
     document.documentElement?.classList.remove("codex-skin-workshop");
     document.documentElement?.removeAttribute(SHELL_ATTR);
+    document.documentElement?.removeAttribute("data-dream-theme");
     document.documentElement?.style.removeProperty("--skin-workshop-art");
     for (const name of THEME_VARIABLES) document.documentElement?.style.removeProperty(name);
     document.querySelectorAll(".skin-workshop-home").forEach((node) => node.classList.remove("skin-workshop-home"));
@@ -291,6 +279,7 @@
     artUrl,
     version: VERSION,
     themeId: THEME.id || "custom",
+    themeVariables: appliedThemeVariables,
     detectShellMode,
   };
   ensure();

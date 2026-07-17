@@ -337,9 +337,29 @@ async function verifySession(session) {
     const composer = box(document.querySelector('.composer-surface-chrome'));
     const sidebar = box(document.querySelector('aside.app-shell-left-panel'));
     const chrome = document.getElementById('codex-skin-workshop-chrome');
+    const themeVariables = window.__CODEX_DREAM_SKIN_STATE__?.themeVariables ?? null;
+    const expectedColors = ${JSON.stringify({
+      "--ds-bg": "background",
+      "--ds-panel": "panel",
+      "--ds-panel-2": "panelAlt",
+      "--ds-green": "accent",
+      "--ds-lime": "accentAlt",
+      "--ds-cyan": "secondary",
+      "--ds-purple": "highlight",
+      "--ds-text": "text",
+      "--ds-muted": "muted",
+      "--ds-line": "line",
+    })};
+    const themeColorsApplied = themeVariables && Object.entries(expectedColors).every(([cssName, colorName]) =>
+      typeof themeVariables[cssName] === 'string' && themeVariables[cssName].length > 0 &&
+      document.documentElement.style.getPropertyValue(cssName).trim() === themeVariables[cssName]
+    );
     const result = {
       installed: document.documentElement.classList.contains('codex-skin-workshop'),
       version: window.__CODEX_DREAM_SKIN_STATE__?.version ?? null,
+      themeId: window.__CODEX_DREAM_SKIN_STATE__?.themeId ?? null,
+      themeVariables,
+      themeColorsApplied,
       stylePresent: Boolean(document.getElementById('codex-skin-workshop-style')),
       chromePresent: Boolean(chrome),
       chromePointerEvents: getComputedStyle(chrome || document.body).pointerEvents,
@@ -358,7 +378,7 @@ async function verifySession(session) {
       },
     };
     const basePass = result.installed && result.version === ${JSON.stringify(SKIN_VERSION)} &&
-      result.stylePresent && result.chromePresent && result.chromePointerEvents === 'none' &&
+      result.stylePresent && result.themeColorsApplied && result.chromePresent && result.chromePointerEvents === 'none' &&
       Boolean(result.composer?.visible) && Boolean(result.sidebar?.visible) && !result.documentOverflow.x;
     // Project selector markup varies across Codex builds — soft requirement.
     const homePass = !result.homeRoute || (
