@@ -50,6 +50,23 @@ html.codex-skin-workshop main.main-surface {
   background: rgba(10, 10, 18, 0.15) !important;
 }
 
+/* Home page cards — glass instead of white */
+html.codex-skin-workshop main.main-surface .bg-white,
+html.codex-skin-workshop main.main-surface [class*="bg-token-surface"] {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Big headings — text shadow for readability */
+html.codex-skin-workshop main.main-surface h1,
+html.codex-skin-workshop main.main-surface h2,
+html.codex-skin-workshop main.main-surface [class*="text-3xl"],
+html.codex-skin-workshop main.main-surface [class*="text-4xl"] {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
 /* Composer input — solid-ish dark glass */
 html.codex-skin-workshop .composer-surface-chrome {
   background: rgba(28, 28, 48, 0.82) !important;
