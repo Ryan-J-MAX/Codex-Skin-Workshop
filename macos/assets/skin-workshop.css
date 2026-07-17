@@ -1,52 +1,89 @@
 /* ========================================
-   Codex Skin Workshop — Final
-   Only wallpaper background + accent color
-   Everything else stays native
+   Codex Skin Workshop — v3
+   Fix: add text color to all panels
    ======================================== */
 
-/* Wallpaper background — only on body, not !important on backgrounds */
+/* Background gradient */
 html.codex-skin-workshop body {
   background:
     radial-gradient(ellipse at 80% 10%, rgba(99, 102, 241, 0.08), transparent 50%),
     radial-gradient(ellipse at 20% 90%, rgba(168, 85, 247, 0.06), transparent 50%),
     linear-gradient(145deg, #0a0a14 0%, #0d0d1e 50%, #0a0a12 100%) !important;
+  color: #e0e0f0 !important;
 }
 
-/* Sidebar glass effect */
+/* Sidebar */
 html.codex-skin-workshop aside.app-shell-left-panel {
   background: rgba(10, 10, 20, 0.85) !important;
   backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
   border-right: 1px solid rgba(99, 102, 241, 0.15) !important;
+  color: #e0e0f0 !important;
 }
 
-/* Main panel glass */
+html.codex-skin-workshop aside.app-shell-left-panel * {
+  color: #d0d0ee !important;
+}
+
+html.codex-skin-workshop aside.app-shell-left-panel button:hover {
+  background: rgba(99, 102, 241, 0.12) !important;
+}
+
+html.codex-skin-workshop aside.app-shell-left-panel [aria-current="page"] {
+  background: rgba(99, 102, 241, 0.15) !important;
+  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  color: #e8e8ff !important;
+}
+
+/* Main panel */
 html.codex-skin-workshop main.main-surface {
   background: rgba(12, 12, 24, 0.7) !important;
   backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  color: #e0e0f0 !important;
 }
 
-/* Header bar */
+/* Header */
 html.codex-skin-workshop main.main-surface > header {
   background: rgba(10, 10, 20, 0.8) !important;
   backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
   border-bottom: 1px solid rgba(99, 102, 241, 0.1) !important;
+  color: #e0e0f0 !important;
 }
 
-/* Composer input area */
+/* Composer input */
 html.codex-skin-workshop .composer-surface-chrome {
   background: rgba(16, 16, 32, 0.75) !important;
   backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
   border: 1px solid rgba(99, 102, 241, 0.15) !important;
+  color: #e0e0f0 !important;
+}
+
+/* Input text — CRITICAL: add color */
+html.codex-skin-workshop .ProseMirror {
+  color: #e0e0f0 !important;
+  caret-color: #818cf8 !important;
 }
 
 /* Message bubbles */
 html.codex-skin-workshop [data-message-author-role="user"] {
-  background: rgba(99, 102, 241, 0.08) !important;
-  border: 1px solid rgba(99, 102, 241, 0.12) !important;
+  background: rgba(99, 102, 241, 0.12) !important;
+  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  color: #e0e0f0 !important;
+}
+
+html.codex-skin-workshop [data-message-author-role="assistant"] {
+  color: #e0e0f0 !important;
+}
+
+/* Generic text */
+html.codex-skin-workshop p,
+html.codex-skin-workshop span,
+html.codex-skin-workshop h1, html.codex-skin-workshop h2,
+html.codex-skin-workshop h3, html.codex-skin-workshop h4,
+html.codex-skin-workshop li,
+html.codex-skin-workshop label,
+html.codex-skin-workshop div,
+html.codex-skin-workshop a {
+  color: #e0e0f0 !important;
 }
 
 /* Accent color */
@@ -61,6 +98,3 @@ html.codex-skin-workshop ::-webkit-scrollbar-thumb {
   background: rgba(99, 102, 241, 0.3) !important;
   border-radius: 3px !important;
 }
-
-/* Caret */
-html.codex-skin-workshop .ProseMirror { caret-color: #818cf8 !important; }
